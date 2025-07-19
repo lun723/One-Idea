@@ -56,7 +56,6 @@ const Sidebar: React.FC<SidebarProps> = ({
                 {/* 關閉按鈕 */}
                 <IconButton
                     onClick={onClose}
-                    className={STYLES.sidebar.closeButton}
                     testId="sidebar-close-button"
                     ariaLabel="Close sidebar"
                     iconType="close"

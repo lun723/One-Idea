@@ -7,7 +7,6 @@ export const STYLES = {
         closed: 'translate-x-full opacity-0',
         header: 'p-4 flex justify-end', // 新增 header 樣式，右側對齊 closeButton
         inner: 'flex flex-col p-4 space-y-4', // 移除 relative，因為 closeButton 現在獨立
-        closeButton: 'p-2 rounded-md text-gray-900 hover:bg-gray-100', // 移除 absolute 定位
         link: {
             base: 'block text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-md',
             active: 'bg-gray-100 font-semibold',
