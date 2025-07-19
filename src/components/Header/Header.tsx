@@ -1,4 +1,3 @@
-// 匯入 React，useState 和其他需要的函數
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';  // 匯入 NavLink 用於導航
 import type { HeaderProps, NavItem } from './Header.types';  // 匯入 Header 的型別
@@ -63,33 +62,35 @@ const Header: React.FC<HeaderProps> = ({
                         </NavLink>
                     </div>
 
-                    {/* 側邊欄觸發按鈕 */}
-                    <div className={STYLES.sidebar.buttonContainer}>
-                        <button
-                            type="button"
-                            className={STYLES.sidebar.button}
-                            aria-controls="sidebar-menu"
-                            aria-expanded={isSidebarOpen}
-                            aria-label={isSidebarOpen ? 'Close menu' : 'Open menu'}
-                            onClick={toggleSidebar}
-                            data-testid="sidebar-button"
-                        >
-                            <svg
-                                className="h-6 w-6"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                aria-hidden="true"
+                    {/* 側邊欄觸發按鈕，僅在側邊欄關閉時顯示 */}
+                    {!isSidebarOpen && (
+                        <div className={STYLES.sidebar.buttonContainer}>
+                            <button
+                                type="button"
+                                className={STYLES.sidebar.button}
+                                aria-controls="sidebar-menu"
+                                aria-expanded={isSidebarOpen}
+                                aria-label="Open menu"
+                                onClick={toggleSidebar}
+                                data-testid="sidebar-button"
                             >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d={getMenuIconPath(isSidebarOpen)}
-                                />
-                            </svg>
-                        </button>
-                    </div>
+                                <svg
+                                    className="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d={getMenuIconPath(isSidebarOpen)}
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                    )}
                 </div>
             </nav>
 
