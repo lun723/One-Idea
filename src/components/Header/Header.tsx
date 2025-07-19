@@ -4,6 +4,7 @@ import type { HeaderProps, NavItem } from './Header.types';  // 匯入 Header �
 import { STYLES } from './Header.styles';  // 匯入樣式
 import { isStringLogo, isImageLogo, generateTestId, getMenuIconPath } from './Header.utils';  // 匯入工具函數
 import Sidebar from '../Sidebar';
+import IconButton from '../IconButton';
 
 // 定義 Header 元件，接受 HeaderProps 型別的屬性
 const Header: React.FC<HeaderProps> = ({ 
@@ -65,30 +66,12 @@ const Header: React.FC<HeaderProps> = ({
                     {/* 側邊欄觸發按鈕，僅在側邊欄關閉時顯示 */}
                     {!isSidebarOpen && (
                         <div className={STYLES.sidebar.buttonContainer}>
-                            <button
-                                type="button"
-                                className={STYLES.sidebar.button}
-                                aria-controls="sidebar-menu"
-                                aria-expanded={isSidebarOpen}
-                                aria-label="Open menu"
+                            <IconButton
                                 onClick={toggleSidebar}
-                                data-testid="sidebar-button"
-                            >
-                                <svg
-                                    className="h-6 w-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    aria-hidden="true"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d={getMenuIconPath(isSidebarOpen)}
-                                    />
-                                </svg>
-                            </button>
+                                testId="sidebar-button"
+                                ariaLabel="Open menu"
+                                iconType="menu"
+                            />
                         </div>
                     )}
                 </div>
