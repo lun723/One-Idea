@@ -7,8 +7,6 @@ import IconButton from '../IconButton';
 
 const Sidebar: React.FC<SidebarProps> = ({ 
     navItems, 
-    ctaText, 
-    ctaPath, 
     isOpen, 
     onClose 
 }) => {
@@ -63,14 +61,6 @@ const Sidebar: React.FC<SidebarProps> = ({
             </div>
             <div className={STYLES.sidebar.inner}>
                 {navItems.map(item => renderNavLink(item))}
-                <NavLink
-                    to={ctaPath}
-                    className={STYLES.sidebar.ctaButton}
-                    onClick={onClose}
-                    data-testid="sidebar-cta-button"
-                >
-                    {ctaText}
-                </NavLink>
             </div>
         </div>
     );

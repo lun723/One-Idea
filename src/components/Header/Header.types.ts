@@ -18,8 +18,6 @@ export interface ImageLogo {
 export interface HeaderProps {
     logo: string | ImageLogo | ReactNode; // logo 可以是字串、ImageLogo 物件或任何可渲染的 React 元素
     navItems: NavItem[];  // 一組導航項目，每個項目都是 NavItem 類型
-    ctaText: string;      // 行動呼籲文字（如：立即註冊、了解更多等）
-    ctaPath: string;      // 行動呼籲的目標路徑（即用戶點擊後會導航到的 URL）
     className?: string;   // 可選的 CSS 類別，用來自訂樣式
     'data-testid'?: string; // 可選的測試 ID，通常用於測試過程中的 DOM 選擇器
 }

@@ -1,1 +1,40 @@
+/* styles.css */
 @import "tailwindcss";
+
+.sidebar-link {
+    @apply block text-gray-900 px-3 py-2 rounded-md relative no-underline;
+}
+
+.sidebar-link:hover {
+    @apply bg-transparent; /* 移除 hover:bg-gray-100 */
+}
+
+.sidebar-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #1f2937; /* text-gray-900 */
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.sidebar-link:hover::after {
+    width: 100%;
+    left: 0;
+    transform: translateX(0);
+}
+
+/* 選取狀態：維持底線全寬 */
+.sidebar-link.active::after {
+    width: 100%;
+    left: 0;
+    transform: translateX(0);
+}
+
+/* 可選：為選取狀態添加背景和字重 */
+.sidebar-link.active {
+    @apply font-semibold;
+}

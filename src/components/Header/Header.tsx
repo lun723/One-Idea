@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';  // 匯入 NavLink 用於導航
-import type { HeaderProps, NavItem } from './Header.types';  // 匯入 Header 的型別
-import { STYLES } from './Header.styles';  // 匯入樣式
-import { isStringLogo, isImageLogo, generateTestId, getMenuIconPath } from './Header.utils';  // 匯入工具函數
+import { NavLink } from 'react-router-dom';
+import type { HeaderProps } from './Header.types';
+import { STYLES } from './Header.styles';
+import { isStringLogo, isImageLogo } from './Header.utils';
 import Sidebar from '../Sidebar';
 import IconButton from '../IconButton';
 
-// 定義 Header 元件，接受 HeaderProps 型別的屬性
 const Header: React.FC<HeaderProps> = ({ 
     logo, 
     navItems, 
-    ctaText, 
-    ctaPath, 
     className = '', 
     'data-testid': testId = 'header',
 }) => {
@@ -80,8 +77,6 @@ const Header: React.FC<HeaderProps> = ({
             {/* 側邊欄 */}
             <Sidebar 
                 navItems={navItems}
-                ctaText={ctaText}
-                ctaPath={ctaPath}
                 isOpen={isSidebarOpen}
                 onClose={closeSidebar}
             />
