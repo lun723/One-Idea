@@ -1,9 +1,7 @@
-// 定義 NavItem 介面，描述導航項目的結構
-export interface NavItem {
-    label: string; // 導航項目的顯示文字
-    path: string;  // 導航項目的目標路徑（URL）
-    id?: string;   // 可選的 id，用來唯一標識該導航項目
-}
+// Sidebar.types.ts
+import type { RouteConfig } from '../../config/routes';
+
+export type NavItem = RouteConfig; // 直接使用 RouteConfig 作為 NavItem
 
 export interface SidebarProps {
     navItems: NavItem[];

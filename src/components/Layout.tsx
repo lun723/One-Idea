@@ -1,3 +1,4 @@
+// Layout.tsx
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
@@ -5,9 +6,7 @@ import Logo from '../assets/cat.svg';
 import { routes } from '../config/routes';
 import type { RouteConfig } from '../config/routes';
 
-const navItems: Pick<RouteConfig, 'label' | 'path'>[] = routes
-  .filter(route => route.isNavItem)
-  .map(({ label, path }) => ({ label, path }));
+const navItems: RouteConfig[] = routes.filter(route => route.isNavItem);
 
 const Layout: React.FC = () => {
   return (

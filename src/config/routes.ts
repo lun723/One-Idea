@@ -8,13 +8,25 @@ export interface RouteConfig {
     label: string;
     path: string;
     component: React.FC;
-    isNavItem?: boolean; // 是否顯示在導航欄
+    isNavItem?: boolean;
+    subItems?: RouteConfig[];
+    id?: string; // 添加 id 屬性，保持可選
 }
 
 export const routes: RouteConfig[] = [
-    { label: '首頁', path: '/', component: Home, isNavItem: true },
-    { label: '關於', path: '/about', component: About, isNavItem: true },
-    { label: '服務', path: '/services', component: Services, isNavItem: true },
-    { label: '聯繫', path: '/contact', component: Contact, isNavItem: true },
-    { label: '註冊', path: '/signup', component: Signup, isNavItem: false },
+    { label: '首頁', path: '/', component: Home, isNavItem: true, id: 'home' },
+    { label: '關於', path: '/about', component: About, isNavItem: true, id: 'about' },
+    {
+        label: '服務',
+        path: '/services',
+        component: Services,
+        isNavItem: true,
+        id: 'services',
+        subItems: [
+            { label: '諮詢服務', path: '/services/consulting', component: Services, isNavItem: true, id: 'consulting' },
+            { label: '技術支持', path: '/services/support', component: Services, isNavItem: true, id: 'support' },
+        ]
+    },
+    { label: '聯繫', path: '/contact', component: Contact, isNavItem: true, id: 'contact' },
+    { label: '註冊', path: '/signup', component: Signup, isNavItem: false, id: 'signup' },
 ];
