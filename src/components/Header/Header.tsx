@@ -60,17 +60,14 @@ const Header: React.FC<HeaderProps> = ({
                         </NavLink>
                     </div>
 
-                    {/* 側邊欄觸發按鈕，僅在側邊欄關閉時顯示 */}
-                    {!isSidebarOpen && (
-                        <div className={STYLES.sidebar.buttonContainer}>
-                            <IconButton
-                                onClick={toggleSidebar}
-                                testId="sidebar-button"
-                                ariaLabel="Open menu"
-                                iconType="menu"
-                            />
-                        </div>
-                    )}
+                    <div className={STYLES.sidebar.buttonContainer}>
+                        <IconButton
+                            onClick={toggleSidebar}
+                            testId="sidebar-button"
+                            ariaLabel="Open menu"
+                            iconType="menu"
+                        />
+                    </div>
                 </div>
             </nav>
 
