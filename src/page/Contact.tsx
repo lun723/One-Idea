@@ -8,7 +8,7 @@ const Contact: React.FC = () => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div>
+    <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 py-8 pt-30">
       <button onClick={openModal} className="bg-blue-500 text-white px-4 py-2 rounded">
         Open Modal
       </button>

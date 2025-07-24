@@ -3,7 +3,7 @@ import React from 'react';
 
 const About: React.FC = () => {
   return (
-    <div>
+    <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 py-8 pt-30">
       <p className="text-gray-600">
         我們是一家致力於創新和客戶滿意度的公司，成立於 2020 年。
       </p>
