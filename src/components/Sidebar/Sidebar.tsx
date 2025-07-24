@@ -39,7 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, isOpen, onClose }) => {
                 }}
                 data-testid={generateTestId(item.path, item.id)}
             >
-                <span className="flex-1">{item.label}</span>
+                <span>{item.label}</span>
                 {item.subItems && item.subItems.length > 0 && (
                     <i
                         className={`fas ${isExpanded ? 'fa-caret-down' : 'fa-caret-right'} ml-2 text-black`}
@@ -49,7 +49,6 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, isOpen, onClose }) => {
         );
 
         if (Array.isArray(item.subItems) && item.subItems.length > 0 && isExpanded) {
-            console.log(`Rendering subItems for ${item.label}:`, item.subItems);
             return (
                 <div key={item.path}>
                     {linkContent}

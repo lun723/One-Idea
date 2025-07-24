@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 .sidebar-link {
-    @apply block text-gray-900 px-3 py-2 rounded-md relative no-underline;
+    @apply flex text-gray-900 px-3 py-2 rounded-md relative no-underline;
 }
 
 .sidebar-link:hover {

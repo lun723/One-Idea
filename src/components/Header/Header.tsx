@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import type { HeaderProps } from './Header.types';
 import { STYLES } from './Header.styles';
@@ -13,6 +13,8 @@ const Header: React.FC<HeaderProps> = ({
     'data-testid': testId = 'header',
 }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
 
     const toggleSidebar = () => {
         setIsSidebarOpen(prev => !prev);
@@ -49,8 +51,27 @@ const Header: React.FC<HeaderProps> = ({
         );
     };
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                // Scrolling down and past a threshold (e.g., 100px)
+                setIsVisible(false);
+            } else {
+                // Scrolling up or near the top
+                setIsVisible(true);
+            }
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [lastScrollY]);
+
     return (
-        <header className={`${STYLES.header} ${className}`} data-testid={testId}>
+        <header className={`${STYLES.header} ${className} ${isVisible ? '' : 'hidden'}`} data-testid={testId}>
             <nav>
                 <div className={STYLES.container}>
                     {/* Logo 區域 */}

@@ -1,4 +1,3 @@
-// Layout.tsx
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
@@ -10,12 +9,12 @@ const navItems: RouteConfig[] = routes.filter(route => route.isNavItem);
 
 const Layout: React.FC = () => {
   return (
-    <div className="min-h-screen bg-blue-100">
+    <div className="min-h-screen bg-blue-100 relative">
       <Header 
         logo={<img src={Logo} alt="Logo" className="h-10 w-auto" />}
         navItems={navItems}
       />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24"> {/* Added pt-16 to offset header */}
         <Outlet />
       </main>
     </div>

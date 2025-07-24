@@ -1,5 +1,5 @@
 export const STYLES = {
-    header: 'bg-gradient-to-b from-white to-transparent',
+    header: 'bg-gradient-to-b from-white to-transparent fixed top-0 left-0 w-full z-50',
     container: 'max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 flex items-center justify-between',
     logo: {
         container: 'flex items-center',
