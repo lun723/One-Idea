@@ -49,7 +49,7 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, isOpen, onClose }) => {
         );
 
         if (Array.isArray(item.subItems) && item.subItems.length > 0 && isExpanded) {
-            console.log(`Rendering subItems for ${item.label}:`, item.subItems); // 調試
+            console.log(`Rendering subItems for ${item.label}:`, item.subItems);
             return (
                 <div key={item.path}>
                     {linkContent}
@@ -82,23 +82,33 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, isOpen, onClose }) => {
     }, [isOpen, onClose]);
 
     return (
-        <div
-            className={`${STYLES.sidebar.container} ${isOpen ? STYLES.sidebar.open : STYLES.sidebar.closed}`}
-            id="sidebar-menu"
-            data-testid="sidebar-menu"
-        >
-            <div className={STYLES.sidebar.header}>
-                <IconButton
+        <>
+            {/* 遮罩元素 */}
+            {isOpen && (
+                <div
+                    className={STYLES.sidebar.overlay}
                     onClick={onClose}
-                    testId="sidebar-close-button"
-                    ariaLabel="Close sidebar"
-                    iconType="close"
+                    data-testid="sidebar-overlay"
                 />
+            )}
+            <div
+                className={`${STYLES.sidebar.container} ${isOpen ? STYLES.sidebar.open : STYLES.sidebar.closed}`}
+                id="sidebar-menu"
+                data-testid="sidebar-menu"
+            >
+                <div className={STYLES.sidebar.header}>
+                    <IconButton
+                        onClick={onClose}
+                        testId="sidebar-close-button"
+                        ariaLabel="Close sidebar"
+                        iconType="close"
+                    />
+                </div>
+                <div className={STYLES.sidebar.inner}>
+                    {navItems.map(item => renderNavLink(item))}
+                </div>
             </div>
-            <div className={STYLES.sidebar.inner}>
-                {navItems.map(item => renderNavLink(item))}
-            </div>
-        </div>
+        </>
     );
 };
 

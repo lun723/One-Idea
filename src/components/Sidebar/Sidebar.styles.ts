@@ -1,4 +1,3 @@
-// Sidebar.styles.ts
 export const STYLES = {
     sidebar: {
         buttonContainer: 'flex items-center',
@@ -16,5 +15,6 @@ export const STYLES = {
         subItemContainer: 'ml-6 flex flex-col space-y-2',
         subItemLink: 'text-sm text-gray-700 hover:text-blue-600 pl-4',
         ctaButton: 'block bg-blue-600 text-white px-4 py-2 rounded-md text-center hover:bg-blue-700',
+        overlay: 'fixed inset-0 bg-black opacity-30 transition-opacity duration-300 ease-in-out',
     },
 };
