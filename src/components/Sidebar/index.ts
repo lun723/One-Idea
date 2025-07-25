@@ -27,3 +27,9 @@ export * from './Sidebar.utils';
 // 這行程式碼會將 `Sidebar.utils` 檔案中所有的匯出項目（如工具函數）重新匯出。
 // 用戶可以像這樣使用：
 // import { generateTestId } from './Sidebar';
+
+// 匯出 `Sidebar.animations` 檔案中的所有動畫配置
+export * from './Sidebar.animations';
+// 這行程式碼會將 `Sidebar.animations` 檔案中所有的動畫變數和配置匯出。
+// 用戶可以像這樣使用：
+// import { sidebarVariants, ANIMATION_CONFIG } from './Sidebar';

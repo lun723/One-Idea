@@ -108,14 +108,14 @@ const Home: React.FC = () => {
     <div className="w-full">
       
       {/* Hero Section - 主標題區塊 */}
-      <AppleSection className="bg-black text-white">
+      <AppleSection className="text-black">
         <div className="text-center max-w-4xl mx-auto px-6">
           {/* 主標題：使用超大字體和極細字重 */}
           <h1 className="text-6xl md:text-8xl font-thin mb-8 tracking-tight">
             Think Different
           </h1>
           {/* 副標題：較小字體，灰色文字 */}
-          <p className="text-xl md:text-2xl font-light text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl font-light text-gray max-w-2xl mx-auto">
             探索無限可能，創造非凡體驗
           </p>
         </div>
