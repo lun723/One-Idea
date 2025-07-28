@@ -56,18 +56,18 @@ const About: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center transition-all duration-1000 ease-out bg-gradient-to-br from-blue-100 to-purple-100 px-2 md:px-0">
+    <div className="min-h-screen flex items-center justify-center transition-all duration-1000 ease-out bg-gradient-to-br from-blue-100 to-purple-100 px-2">
       {/* Hero 區塊 */}
       <div className="bg-gradient-to-br from-blue-100 to-purple-100 w-full">
-        <div className="flex flex-col md:flex-row items-center justify-center text-center max-w-4xl mx-auto px-2 md:px-8 py-8 md:py-16 gap-6 md:gap-12 w-full">
+        <div className="flex flex-col md:flex-row items-center justify-center text-center max-w-5xl mx-auto px-3 md:px-8 py-16 md:py-8 gap-2 md:gap-8 w-full">
           {/* 左側：個人簡介（永遠顯示） */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full"
+            className="flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full px-2 md:px-6 py-10"
           >
-            <h2 className="text-lg sm:text-2xl md:text-4xl font-bold mb-2 md:mb-4 text-gray-900">
+            <h2 className="text-4xl font-bold mb-2 md:mb-4 text-gray-900">
               <TypewriterText
                 text="Hello, I'm Juila"
                 speed={100}
@@ -75,7 +75,7 @@ const About: React.FC = () => {
                 onComplete={() => setFirstTextComplete(true)}
               />
             </h2>
-            <h2 className="text-lg sm:text-xl md:text-2xl font-light mb-2 md:mb-4 text-gray-700">
+            <h2 className="text-xl font-light mb-2 md:mb-4 text-gray-700">
               <TypewriterText
                 text="A Front-end Engineer"
                 delay={0}
@@ -123,7 +123,7 @@ const About: React.FC = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="flex-1 flex flex-col items-center max-w-full px-2 md:px-6 py-4 md:py-8 w-full"
+                className="flex-1 flex flex-col items-center max-w-full px-2 md:px-6 py-4 w-full"
               >
                 <AnimatePresence mode="wait">
                   {/* 經歷卡片 */}
@@ -160,7 +160,7 @@ const About: React.FC = () => {
                       exit="exit"
                     >
                       <Card title="Skills">
-                        <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                           {skills.map((skill, idx) => (
                             <motion.span
                               key={idx}
