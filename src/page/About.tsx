@@ -11,14 +11,8 @@ const About: React.FC = () => {
     second: false,
     third: false,
   });
-  const skills = [
-    "React.js", "Vite", "MUI", "Bootstrap", "Ant Design", "RWD響應式網頁設計",
-    "SCSS/SASS", "Git", "Github", "GitLab", "API 串接", "AWS", "Node.js", "Canva"
-  ];
-  const [cardVisibility, setCardVisibility] = useState({
-    experience: false,
-    skills: false,
-  });
+  const skills = [ "React.js", "Vite", "MUI", "Bootstrap", "Ant Design", "RWD響應式網頁設計", "SCSS/SASS", "Git", "Github", "GitLab", "API 串接", "AWS", "Node.js", "Canva" ];
+  const [cardVisibility, setCardVisibility] = useState({ experience: false, skills: false, });
   const [isRightSideVisible, setIsRightSideVisible] = useState(false);
 
   const toggleCard = useCallback((cardKey: keyof typeof cardVisibility) => {
