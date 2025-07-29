@@ -1,14 +1,22 @@
 import React from 'react';
 import type { CardProps } from './Card.types';
 import { STYLES } from './Card.styles';
+import { motion } from 'framer-motion';
+import { cardVariants } from './Card.animations';
 
-const Content: React.FC<CardProps> = ({ title, children }) => {
+const Card: React.FC<CardProps> = ({ title, children }) => {
     return (
-        <div className={STYLES.container}>
+        <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={STYLES.container}
+        >
             <h1 className={STYLES.title}>{title}</h1>
             <div className={STYLES.content}>{children}</div>
-        </div>
+        </motion.div>
     );
 };
 
-export default Content;
+export default Card;

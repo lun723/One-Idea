@@ -9,12 +9,6 @@ const skills = [
   "SCSS/SASS", "Git", "Github", "GitLab", "API 串接", "AWS", "Node.js", "Canva"
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.3, ease: "easeInOut" } },
-  exit: { opacity: 0, transition: { duration: 0.2, ease: "easeInOut" } },
-};
-
 const About: React.FC = () => {
   const [textCompletion, setTextCompletion] = useState({
     first: false,
@@ -110,43 +104,27 @@ const About: React.FC = () => {
               >
                 <AnimatePresence mode="wait">
                   {cardVisibility.experience && (
-                    <motion.div
-                      key="experience"
-                      variants={cardVariants}
-                      initial="hidden"
-                      animate="visible"
-                      exit="exit"
-                    >
-                      <Card title="Experience">
-                        <div className="font-bold mb-4 border-gray-500 px-3 py-2 bg-blue-100/30 shadow-md text-start">
-                          <div className="font-bold text-lg py-2">越世實業股份有限公司</div>
-                          <ul className="list-disc list-inside text-gray-600 text-xs sm:text-sm md:text-base">
-                            <li>參與1項開發專案、4項維運及開發專案，具中大型專案經驗</li>
-                            <li>與SA、SD討論UI/UX、API規格，開發專案畫面</li>
-                            <li>使用React.js元件模組化、自訂功能函式、路由管理</li>
-                            <li>導入Vite、MUI、Bootstrap，實現快速開發與一致性設計</li>
-                            <li>前端專案部屬至AWS（S3、CloudFront）</li>
-                          </ul>
-                        </div>
-                      </Card>
-                    </motion.div>
+                    <Card title="Experience">
+                      <div className="font-bold mb-4 border-gray-500 px-3 py-2 bg-blue-100/30 shadow-md text-start">
+                        <div className="font-bold text-lg py-2">越世實業股份有限公司</div>
+                        <ul className="list-disc list-inside text-gray-600 text-xs sm:text-sm md:text-base">
+                          <li>參與1項開發專案、4項維運及開發專案，具中大型專案經驗</li>
+                          <li>與SA、SD討論UI/UX、API規格，開發專案畫面</li>
+                          <li>使用React.js元件模組化、自訂功能函式、路由管理</li>
+                          <li>導入Vite、MUI、Bootstrap，實現快速開發與一致性設計</li>
+                          <li>前端專案部屬至AWS（S3、CloudFront）</li>
+                        </ul>
+                      </div>
+                    </Card>
                   )}
                   {cardVisibility.skills && (
-                    <motion.div
-                      key="skills"
-                      variants={cardVariants}
-                      initial="hidden"
-                      animate="visible"
-                      exit="exit"
-                    >
-                      <Card title="Skills">
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                          {skills.map((skill, idx) => (
-                            <Tickers key={skill} text={skill} index={idx} /> 
-                          ))}
-                        </div>
-                      </Card>
-                    </motion.div>
+                    <Card title="Skills">
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        {skills.map((skill, idx) => (
+                          <Tickers key={skill} text={skill} index={idx} /> 
+                        ))}
+                      </div>
+                    </Card>
                   )}
                 </AnimatePresence>
               </motion.div>
