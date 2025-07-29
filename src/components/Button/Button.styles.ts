@@ -1,5 +1,5 @@
 export const baseButtonClass =
-    "group relative min-w-[8rem] h-12 bg-transparent text-blue-900 flex items-center justify-center hover:active:scale-95 transition-all duration-300 cursor-pointer";
+    "group relative min-w-[8rem] h-12 bg-transparent text-lg text-blue-900 flex items-center justify-center hover:active:scale-95 transition-all duration-300 cursor-pointer";
 
 export const swapCornerLines = [
     // 左上角 L：初始顯示 → hover 時縮回
