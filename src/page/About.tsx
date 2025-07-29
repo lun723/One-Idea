@@ -41,43 +41,27 @@ const About: React.FC = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="w-full md:w-3/7 px-2 md:px-6 py-10"
           >
-            <h2 className="text-4xl font-bold mb-2 md:mb-4 text-gray-900">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-light m-8 text-gray-700">
               <TypewriterText
-                text="Hello, I'm Juila"
+                text="Click to see my experience and skills"
                 speed={100}
                 isActive={true}
                 onComplete={() => handleTextComplete("first")}
               />
             </h2>
-            <h2 className="text-xl font-light mb-2 md:mb-4 text-gray-700">
-              <TypewriterText
-                text="A Front-end Engineer"
-                speed={100}
-                isActive={textCompletion.first}
-                onComplete={() => handleTextComplete("second")}
-              />
-            </h2>
-            <h2 className="text-lg sm:text-xl md:text-2xl font-light mb-2 md:mb-4 text-gray-700">
-              <TypewriterText
-                text=""
-                speed={100}
-                isActive={textCompletion.second}
-                onComplete={() => handleTextComplete("third")}
-              />
-            </h2>
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: textCompletion.third ? 1 : 0 }}
+              animate={{ opacity: textCompletion.first ? 1 : 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="flex flex-wrap gap-8 mb-4 justify-center"
+              className="flex flex-wrap gap-8 m-4 justify-center"
             >
               <Button
-                label={cardVisibility.experience ? "Hide Experience" : "Show Experience"}
+                label={cardVisibility.experience ? "Experience" : "Experience"}
                 onClick={() => toggleCard("experience")}
               />
 
               <Button
-                label={cardVisibility.skills ? "Hide Skill" : "Show Skill"}
+                label={cardVisibility.skills ? "Skill" : "Skill"}
                 onClick={() => toggleCard("skills")}
               />
 
@@ -97,9 +81,9 @@ const About: React.FC = () => {
                 <AnimatePresence mode="wait">
                   {cardVisibility.experience && (
                     <Card title="Experience">
-                      <div className="font-bold mb-4 border-gray-500 px-3 py-2 bg-blue-100/30 shadow-md text-start">
-                        <div className="font-bold text-lg py-2">越世實業股份有限公司</div>
-                        <ul className="list-disc list-inside text-gray-600 text-xs sm:text-sm md:text-base">
+                      <div className="font-bold mb-4 px-3 py-2 text-start">
+                        <div className="font-bold mb-2 text-lg py-2">越世實業股份有限公司</div>
+                        <ul className="list-disc list-outside ml-8 text-gray-600 text-xs sm:text-sm md:text-base">
                           <li>參與1項開發專案、4項維運及開發專案，具中大型專案經驗</li>
                           <li>與SA、SD討論UI/UX、API規格，開發專案畫面</li>
                           <li>使用React.js元件模組化、自訂功能函式、路由管理</li>
