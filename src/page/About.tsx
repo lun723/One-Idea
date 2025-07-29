@@ -3,11 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { TypewriterText } from "../components/TypewriterText";
 import { Card } from "../components/Card";
 import Tickers from "../components/Tickers";
-
-const skills = [
-  "React.js", "Vite", "MUI", "Bootstrap", "Ant Design", "RWD響應式網頁設計",
-  "SCSS/SASS", "Git", "Github", "GitLab", "API 串接", "AWS", "Node.js", "Canva"
-];
+import { Button } from "../components/Button";
 
 const About: React.FC = () => {
   const [textCompletion, setTextCompletion] = useState({
@@ -15,6 +11,10 @@ const About: React.FC = () => {
     second: false,
     third: false,
   });
+  const skills = [
+    "React.js", "Vite", "MUI", "Bootstrap", "Ant Design", "RWD響應式網頁設計",
+    "SCSS/SASS", "Git", "Github", "GitLab", "API 串接", "AWS", "Node.js", "Canva"
+  ];
   const [cardVisibility, setCardVisibility] = useState({
     experience: false,
     skills: false,
@@ -45,7 +45,7 @@ const About: React.FC = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="w-full md:w-2/5 px-2 md:px-6 py-10"
+            className="w-full md:w-3/7 px-2 md:px-6 py-10"
           >
             <h2 className="text-4xl font-bold mb-2 md:mb-4 text-gray-900">
               <TypewriterText
@@ -75,20 +75,18 @@ const About: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: textCompletion.third ? 1 : 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="flex flex-wrap gap-4 mb-4 justify-center md:justify-start"
+              className="flex flex-wrap gap-8 mb-4 justify-center"
             >
-              <button
+              <Button
+                label={cardVisibility.experience ? "Hide Experience" : "Show Experience"}
                 onClick={() => toggleCard("experience")}
-                className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition duration-300"
-              >
-                {cardVisibility.experience ? "Hide Experience" : "Show Experience"}
-              </button>
-              <button
+              />
+
+              <Button
+                label={cardVisibility.skills ? "Hide Skill" : "Show Skill"}
                 onClick={() => toggleCard("skills")}
-                className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition duration-300"
-              >
-                {cardVisibility.skills ? "Hide Skill" : "Show Skill"}
-              </button>
+              />
+
             </motion.div>
           </motion.div>
 
@@ -100,7 +98,7 @@ const About: React.FC = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="w-full md:w-3/5 px-2 md:px-6 py-4"
+                className="w-full md:w-4/7 px-2 md:px-6 py-4"
               >
                 <AnimatePresence mode="wait">
                   {cardVisibility.experience && (
@@ -121,7 +119,7 @@ const About: React.FC = () => {
                     <Card title="Skills">
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                         {skills.map((skill, idx) => (
-                          <Tickers key={skill} text={skill} index={idx} /> 
+                          <Tickers key={skill} text={skill} index={idx} />
                         ))}
                       </div>
                     </Card>
