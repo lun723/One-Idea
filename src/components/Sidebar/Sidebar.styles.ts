@@ -16,3 +16,9 @@ export const STYLES = {
         overlay: 'fixed inset-0 bg-black/30',
     },
 };
+
+export const sidebarLinkWrapper = "relative group w-full block";
+export const sidebarLinkText = "text-blue-900 px-2 py-2 block transition-colors duration-300 group-hover:text-blue-900";
+export const sidebarLinkUnderline = "absolute bottom-0 left-1/2 w-0 h-[2px] bg-blue-900/30 transform -translate-x-1/2 origin-center transition-all duration-300 group-hover:w-full";
+
+

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { SidebarProps, NavItem } from './Sidebar.types';
-import { STYLES } from './Sidebar.styles';
+import { STYLES , sidebarLinkWrapper , sidebarLinkText , sidebarLinkUnderline} from './Sidebar.styles';
 import { generateTestId } from './Sidebar.utils';
 import {
     sidebarVariants,
@@ -43,28 +43,32 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, isOpen, onClose }) => {
             >
                 <NavLink
                     to={item.path}
-                    className={({ isActive }: { isActive: boolean }): string =>
-                        `${STYLES.sidebar.link.base} ${isActive ? STYLES.sidebar.link.active : STYLES.sidebar.link.inactive} w-full flex items-center justify-between`
+                    className={({ isActive }) =>
+                        `${sidebarLinkWrapper} ${isActive ? 'text-blue-500' : ''}`
                     }
                     onClick={(e) => {
                         if (hasSubItems) {
-                            e.preventDefault();
-                            toggleExpand(item.path);
+                        e.preventDefault();
+                        toggleExpand(item.path);
                         } else {
-                            onClose();
+                        onClose();
                         }
                     }}
                     data-testid={generateTestId(item.path, item.id)}
-                >
-                    <span>{item.label}</span>
-                    {hasSubItems && (
+                    >
+                    <div className="flex items-center justify-between">
+                        <span className={sidebarLinkText}>{item.label}</span>
+                        {hasSubItems && (
                         <motion.i
-                            className={`fas ${isExpanded ? 'fa-caret-down' : 'fa-caret-right'} ml-2 text-black`}
+                            className={`fas fa-caret-right ml-2 text-blue-900`}
                             animate={{ rotate: isExpanded ? 90 : 0 }}
                             transition={iconRotationSettings.transition}
                         />
-                    )}
-                </NavLink>
+                        )}
+                    </div>
+                    <span className={sidebarLinkUnderline} />
+                    </NavLink>
+
 
                 <AnimatePresence>
                     {hasSubItems && isExpanded && (
