@@ -41,9 +41,9 @@ const About: React.FC = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="w-full md:w-3/7 px-2 md:px-6 py-10"
           >
-            <h2 className="text-lg sm:text-xl md:text-2xl font-light m-8 text-gray-700">
+            <h2 className="text-2xl font-light m-8 text-gray-700">
               <TypewriterText
-                text="Click to see my experience and skills"
+                text="Click to see my"
                 speed={100}
                 isActive={true}
                 onComplete={() => handleTextComplete("first")}
@@ -53,15 +53,15 @@ const About: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: textCompletion.first ? 1 : 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="flex flex-wrap gap-8 m-4 justify-center"
+              className="flex gap-8 m-4 justify-center"
             >
               <Button
-                label={cardVisibility.experience ? "Experience" : "Experience"}
+                label={"Experience"}
                 onClick={() => toggleCard("experience")}
               />
 
               <Button
-                label={cardVisibility.skills ? "Skill" : "Skill"}
+                label={"Skills"}
                 onClick={() => toggleCard("skills")}
               />
 
