@@ -1,7 +1,6 @@
 import Home from '../page/Home';
 import About from '../page/About';
 import Japan from '../page/travel/Japan';
-import Contact from '../page/Contact';
 
 export interface RouteConfig {
     label: string;
@@ -23,6 +22,5 @@ export const routes: RouteConfig[] = [
         subItems: [
             { label: 'Japan', path: '/travel/Japan', component: Japan, isNavItem: true, id: 'Japan' },
         ]
-    },
-    { label: 'Contact', path: '/contact', component: Contact, isNavItem: true, id: 'contact' },
+    }
 ];
