@@ -1,6 +1,6 @@
 import Home from '../page/Home';
 import About from '../page/About';
-import Japan from '../page/travel/Japan';
+import pokeapi from '../page/practise/pokeapi';
 
 export interface RouteConfig {
     label: string;
@@ -15,12 +15,12 @@ export const routes: RouteConfig[] = [
     { label: 'Home', path: '/', component: Home, isNavItem: true, id: 'home' },
     { label: 'About', path: '/about', component: About, isNavItem: true, id: 'about' },
     {
-        label: 'Travel',
-        path: '/travel',
-        component: Japan,
+        label: 'Practise',
+        path: '/practise',
+        component: pokeapi,
         isNavItem: true,
         subItems: [
-            { label: 'Japan', path: '/travel/Japan', component: Japan, isNavItem: true, id: 'Japan' },
+            { label: 'pokeapi', path: '/practise/pokeapi', component: pokeapi, isNavItem: true, id: 'pokeapi' },
         ]
     }
 ];
