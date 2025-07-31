@@ -3,6 +3,7 @@ import Layout from './components/Layout';
 import { routes } from './config/routes';
 import type { RouteConfig } from './config/routes';
 import { ModalProvider } from './context/modalContext';
+import { LoadingProvider } from './context/LoadingContext';
 
 const renderRoutes = (routeList: RouteConfig[]) => {
   return routeList.map(({ path, component: Component, subItems }) => (
@@ -14,15 +15,17 @@ const renderRoutes = (routeList: RouteConfig[]) => {
 
 function App() {
   return (
-    <ModalProvider>
-      <BrowserRouter>
-        <Routes>
-            <Route element={<Layout />}>
-              {renderRoutes(routes)}
-            </Route>
-        </Routes>
-      </BrowserRouter>
-    </ModalProvider>
+    <LoadingProvider>
+      <ModalProvider>
+        <BrowserRouter>
+          <Routes>
+              <Route element={<Layout />}>
+                {renderRoutes(routes)}
+              </Route>
+          </Routes>
+        </BrowserRouter>
+      </ModalProvider>
+    </LoadingProvider>
   );
 }
 

@@ -3,6 +3,7 @@ import usePagination from '../../hooks/usePagination';
 import useFetch from '../../hooks/useFetch';
 import Card from '../../components/Card';
 import { useModal } from '../../context/modalContext';
+import Pagination from '../../components/Pagination/Pagination';
 
 interface PokemonListItem {
   name: string;
@@ -69,26 +70,12 @@ const App: React.FC = () => {
             <p className="text-center text-lg">沒有找到寶可夢資料</p>
           )}
         </div>
-        <div className="flex justify-center gap-4 mt-4">
-          <button
-            onClick={handlePreviousPage}
-            disabled={!previousUrl}
-            className={`px-4 py-2 rounded-lg text-white font-semibold transition-colors ${
-              previousUrl ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-300 cursor-not-allowed'
-            }`}
-          >
-            上一頁
-          </button>
-          <button
-            onClick={handleNextPage}
-            disabled={!nextUrl}
-            className={`px-4 py-2 rounded-lg text-white font-semibold transition-colors ${
-              nextUrl ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-300 cursor-not-allowed'
-            }`}
-          >
-            下一頁
-          </button>
-        </div>
+        <Pagination
+          nextUrl={nextUrl}
+          previousUrl={previousUrl}
+          handleNextPage={handleNextPage}
+          handlePreviousPage={handlePreviousPage}
+        />
       </div>
     </div>
   );

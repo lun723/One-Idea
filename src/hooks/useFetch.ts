@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import axios from 'axios';
 import type { AxiosRequestConfig, Method } from 'axios';
-
+import { useLoading } from '../context/LoadingContext'; // 引入 LoadingContext
 
 interface FetchOptions extends AxiosRequestConfig {
-  method?: Method; // HTTP 方法，如 'GET', 'POST', 'PUT', 'DELETE'
-  body?: any; // 請求 body（用於 POST/PUT）
-  params?: Record<string, any>; // 查詢參數，例如 { id: 1, name: 'John' }
+  method?: Method;
+  body?: any;
+  params?: Record<string, any>;
 }
 
 const useFetch = <T>(): {
@@ -18,19 +18,21 @@ const useFetch = <T>(): {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+  const { showLoading, hideLoading } = useLoading(); // 使用 LoadingContext
 
   const fetchData = async (url: string, options: FetchOptions = {}): Promise<T> => {
     try {
       setLoading(true);
+      showLoading(); // 顯示全局載入指示器
       setError(null);
 
       const config: AxiosRequestConfig = {
         url,
-        method: options.method || 'GET', // 預設為 GET
-        data: options.body, // 支援 POST/PUT 的 body
-        params: options.params, // 支援查詢參數
-        headers: options.headers || {}, // 自定義 headers
-        ...options, // 允許其他 axios 配置
+        method: options.method || 'GET',
+        data: options.body,
+        params: options.params,
+        headers: options.headers || {},
+        ...options,
       };
 
       const response = await axios(config);
@@ -42,6 +44,7 @@ const useFetch = <T>(): {
       throw error;
     } finally {
       setLoading(false);
+      hideLoading(); // 隱藏全局載入指示器
     }
   };
 
