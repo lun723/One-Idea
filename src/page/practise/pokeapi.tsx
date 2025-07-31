@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from '../../components/Card';
+import { useModal } from '../../context/modalContext';
 
 interface PokemonListItem {
   name: string;
@@ -32,6 +33,7 @@ const App: React.FC = () => {
   const [currentUrl, setCurrentUrl] = useState('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0');
   const [nextUrl, setNextUrl] = useState<string | null>(null);
   const [previousUrl, setPreviousUrl] = useState<string | null>(null);
+  const { openModal, closeModal } = useModal();
 
   useEffect(() => {
     const fetchPokemons = async (url: string) => {
@@ -68,6 +70,16 @@ const App: React.FC = () => {
     if (previousUrl) setCurrentUrl(previousUrl);
   };
 
+  // Function to open modal with specific Pokémon data
+  const handleOpenPokemonModal = (pokemon: Pokemon) => {
+    openModal(
+      'PokemonModal',
+      // Pass the Pokémon data directly (no async fetch needed)
+      { pokemon },
+      () => { }
+    );
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100 px-2 transition-all duration-1000 ease-out">
       <div className="w-full bg-gradient-to-br from-blue-100 to-purple-100">
@@ -80,7 +92,7 @@ const App: React.FC = () => {
                 <div className="flex flex-col gap-1">
                   <img src={pokemon.sprites.front_default} alt={pokemon.name} />
                   <button
-                    onClick={() => openModal(pokemon)}
+                    onClick={() => handleOpenPokemonModal(pokemon)}
                     className="bg-blue-500 text-white px-4 py-2 rounded mt-2"
                   >
                     Open Modal

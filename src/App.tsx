@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
 import { routes } from './config/routes';
 import type { RouteConfig } from './config/routes';
+import { ModalProvider } from './context/modalContext';
 
-// 遞迴渲染路由的輔助函數
 const renderRoutes = (routeList: RouteConfig[]) => {
   return routeList.map(({ path, component: Component, subItems }) => (
     <Route key={path} path={path} element={<Component />}>
@@ -14,13 +14,15 @@ const renderRoutes = (routeList: RouteConfig[]) => {
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          {renderRoutes(routes)}
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ModalProvider>
+      <BrowserRouter>
+        <Routes>
+            <Route element={<Layout />}>
+              {renderRoutes(routes)}
+            </Route>
+        </Routes>
+      </BrowserRouter>
+    </ModalProvider>
   );
 }
 
