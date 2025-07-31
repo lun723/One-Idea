@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import usePagination from '../../hooks/usePagination';
+import useFetch from '../../hooks/useFetch';
 import Card from '../../components/Card';
 import { useModal } from '../../context/modalContext';
 
@@ -21,62 +22,24 @@ interface Pokemon {
   }[];
 }
 
-interface PokeApiResponse {
-  results: PokemonListItem[];
-  next: string | null;
-  previous: string | null;
-}
-
 const App: React.FC = () => {
-  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [currentUrl, setCurrentUrl] = useState('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0');
-  const [nextUrl, setNextUrl] = useState<string | null>(null);
-  const [previousUrl, setPreviousUrl] = useState<string | null>(null);
-  const { openModal, closeModal } = useModal();
-
-  useEffect(() => {
-    const fetchPokemons = async (url: string) => {
-      try {
-        setLoading(true);
-        const response = await axios.get<PokeApiResponse>(url);
-        const pokemonList = response.data.results;
-        setNextUrl(response.data.next);
-        setPreviousUrl(response.data.previous);
-
-        const pokemonDetails = await Promise.all(
-          pokemonList.map(async (item) => {
-            const detailResponse = await axios.get<Pokemon>(item.url);
-            return detailResponse.data;
-          })
-        );
-
-        setPokemons(pokemonDetails);
-      } catch (error) {
-        console.error('Error fetching Pokémon data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPokemons(currentUrl);
-  }, [currentUrl]);
-
-  const handleNextPage = () => {
-    if (nextUrl) setCurrentUrl(nextUrl);
+  const { fetchData } = useFetch<Pokemon>();
+  const transformPokemonData = async (item: PokemonListItem): Promise<Pokemon> => {
+    return await fetchData(item.url);
   };
 
-  const handlePreviousPage = () => {
-    if (previousUrl) setCurrentUrl(previousUrl);
-  };
+  const { data: pokemons, loading, error, nextUrl, previousUrl, handleNextPage, handlePreviousPage } = usePagination<PokemonListItem, Pokemon>(
+    'https://pokeapi.co/api/v2/pokemon?limit=10&offset=0',
+    transformPokemonData
+  );
 
-  // Function to open modal with specific Pokémon data
+  const { openModal } = useModal();
+
   const handleOpenPokemonModal = (pokemon: Pokemon) => {
     openModal(
       'PokemonModal',
-      // Pass the Pokémon data directly (no async fetch needed)
       { pokemon },
-      () => { }
+      () => {}
     );
   };
 
@@ -86,6 +49,8 @@ const App: React.FC = () => {
         <div className="grid grid-cols md:grid-cols-3 items-center justify-center text-center mx-auto px-3 md:px-8 py-8 gap-2 md:gap-12 mt-24">
           {loading ? (
             <p className="text-center text-lg">載入中...</p>
+          ) : error ? (
+            <p className="text-center text-lg text-red-500">錯誤: {error.message}</p>
           ) : pokemons.length > 0 ? (
             pokemons.map((pokemon) => (
               <Card key={pokemon.id} title={pokemon.name}>
