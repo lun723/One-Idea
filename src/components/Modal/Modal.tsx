@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import type { ModalProps } from './Modal.types';
 import { 
   modalSizeClasses, 
@@ -14,42 +14,51 @@ import IconButton from '../IconButton';
 export const Modal: React.FC<ModalProps> = ({ 
   isOpen, 
   onClose, 
-  title = '', // 默認空字符串，避免 undefined
+  title = '', 
   children, 
   size = 'medium',
   className = '',
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    };
-
-    if (isOpen && modalRef.current) {
-      document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden';
-      modalRef.current.focus(); // 確保 modalRef.current 不為 null
-      const cleanup = trapFocus(modalRef);
-      return () => {
-        document.removeEventListener('keydown', handleEscape);
-        document.body.style.overflow = 'unset';
-        cleanup();
-      };
+  // 將 handleEscape 提取為 useCallback
+  const handleEscape = useCallback((event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      onClose();
     }
-  }, [isOpen, onClose]);
+  }, [onClose]);
+
+  // 背景點擊處理
+  const handleBackdropClick = useCallback((e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  }, [onClose]);
+
+  useEffect(() => {
+    if (!isOpen || !modalRef.current) return;
+
+    document.addEventListener('keydown', handleEscape);
+    document.body.style.overflow = 'hidden';
+    modalRef.current.focus();
+    
+    const cleanup = trapFocus(modalRef);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+      cleanup();
+    };
+  }, [isOpen, handleEscape]);
 
   if (!isOpen) return null;
 
   return (
-    <div className={modalBackdropClass} onClick={onClose}>
+    <div className={modalBackdropClass} onClick={handleBackdropClick}>
       <div className={modalOverlayClass} />
       <div 
         ref={modalRef}
-        className={`${modalContentClass} ${modalSizeClasses[size]} ${className}`}
-        onClick={(e) => e.stopPropagation()}
+        className={`${modalContentClass} ${modalSizeClasses[size]} ${className}`.trim()}
         role="dialog"
         aria-modal="true"
         aria-labelledby={title ? 'modal-title' : undefined}
@@ -57,13 +66,15 @@ export const Modal: React.FC<ModalProps> = ({
       >
         {title && (
           <div className={modalHeaderClass}>
-            <h2 id="modal-title" className="text-xl font-bold text-gray-900">{title}</h2>
+            <h2 id="modal-title" className="text-xl font-bold text-gray-900">
+              {title}
+            </h2>
             <IconButton
-                    onClick={onClose}
-                    testId="sidebar-close-button"
-                    ariaLabel="Close sidebar"
-                    iconType="close"
-                />
+              onClick={onClose}
+              testId="modal-close-button"
+              ariaLabel="Close modal"
+              iconType="close"
+            />
           </div>
         )}
         <div className={modalBodyClass}>
