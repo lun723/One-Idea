@@ -1,4 +1,5 @@
 import About from '../views/page/About';
+import Error from '../views/page/Error';
 import Home from '../views/page/Home';
 import Pokemon from '../views/page/practise/pokeapi';
 export interface RouteConfig {
@@ -21,5 +22,6 @@ export const routes: RouteConfig[] = [
         subItems: [
             { label: 'Pokemon', path: '/practise/pokeapi', component: Pokemon, isNavItem: true, id: 'pokeapi' },
         ]
-    }
+    },
+    { label: '錯誤', path: '*', component: Error, isNavItem: false, id: 'error' }
 ];
