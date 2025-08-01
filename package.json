@@ -1,16 +1,15 @@
 {
-  "name": "milk-tea",
+  "name": "One-Idea",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "homepage": "https://lun723.github.io/One-Idea",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist --branch gh-pages"
+    "build": "vite build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.0.0",
