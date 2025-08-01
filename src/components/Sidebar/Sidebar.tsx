@@ -4,16 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import type { SidebarProps, NavItem } from './Sidebar.types';
 import { STYLES , sidebarLinkWrapper , sidebarLinkText , sidebarLinkUnderline} from './Sidebar.styles';
 import { generateTestId } from './Sidebar.utils';
-import {
-    sidebarVariants,
-    overlayVariants,
-    navContainerVariants,
-    navItemVariants,
-    subItemsVariants,
-    subItemVariants,
-    headerVariants,
-    iconRotationSettings
-} from './Sidebar.animations';
+import { sidebarVariants, overlayVariants, navContainerVariants, navItemVariants, subItemsVariants, subItemVariants, headerVariants, iconRotationSettings } from './Sidebar.animations';
 import IconButton from '../IconButton';
 
 const Sidebar: React.FC<SidebarProps> = ({ navItems, isOpen, onClose }) => {
@@ -36,55 +27,29 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, isOpen, onClose }) => {
         const hasSubItems = item.subItems && item.subItems.length > 0;
 
         return (
-            <motion.div
-                key={item.path}
-                variants={navItemVariants}
-                className="w-full"
-            >
-                <NavLink
-                    to={item.path}
-                    className={({ isActive }) =>
-                        `${sidebarLinkWrapper} ${isActive ? 'text-blue-500' : ''}`
-                    }
+            <motion.div key={item.path} variants={navItemVariants} className="w-full">
+                <NavLink to={item.path} className={({ isActive }) => `${sidebarLinkWrapper} ${isActive ? 'text-blue-500' : ''}` } data-testid={generateTestId(item.path, item.id)}
                     onClick={(e) => {
                         if (hasSubItems) {
-                        e.preventDefault();
-                        toggleExpand(item.path);
+                            e.preventDefault();
+                            toggleExpand(item.path);
                         } else {
-                        onClose();
+                            onClose();
                         }
-                    }}
-                    data-testid={generateTestId(item.path, item.id)}
-                    >
+                    }}>
                     <div className="flex items-center justify-between">
                         <span className={sidebarLinkText}>{item.label}</span>
                         {hasSubItems && (
-                        <motion.i
-                            className={`fas fa-caret-right ml-2 text-blue-900`}
-                            animate={{ rotate: isExpanded ? 90 : 0 }}
-                            transition={iconRotationSettings.transition}
-                        />
+                        <motion.i className={`fas fa-caret-right ml-2 text-blue-900`} animate={{ rotate: isExpanded ? 90 : 0 }} transition={iconRotationSettings.transition} />
                         )}
                     </div>
                     <span className={sidebarLinkUnderline} />
-                    </NavLink>
-
-
+                </NavLink>
                 <AnimatePresence>
                     {hasSubItems && isExpanded && (
-                        <motion.div
-                            variants={subItemsVariants}
-                            initial="closed"
-                            animate="open"
-                            exit="closed"
-                            className={`${STYLES.sidebar.subItemContainer} overflow-hidden`}
-                        >
+                        <motion.div variants={subItemsVariants} initial="closed" animate="open" exit="closed" className={`${STYLES.sidebar.subItemContainer} overflow-hidden`} >
                             {item.subItems!.map(subItem => (
-                                <motion.div
-                                    key={subItem.path}
-                                    variants={subItemVariants}
-                                    data-testid={`subitem-${subItem.path}`}
-                                >
+                                <motion.div key={subItem.path} variants={subItemVariants} data-testid={`subitem-${subItem.path}`}>
                                     {renderNavLink(subItem, level + 1)}
                                 </motion.div>
                             ))}
@@ -113,46 +78,12 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, isOpen, onClose }) => {
         <AnimatePresence>
             {isOpen && (
                 <>
-                    {/* Animated Overlay */}
-                    <motion.div
-                        variants={overlayVariants}
-                        initial="closed"
-                        animate="open"
-                        exit="closed"
-                        className={STYLES.sidebar.overlay}
-                        onClick={onClose}
-                        data-testid="sidebar-overlay"
-                    />
-
-                    {/* Animated Sidebar */}
-                    <motion.div
-                        variants={sidebarVariants}
-                        initial="closed"
-                        animate="open"
-                        exit="closed"
-                        className={STYLES.sidebar.container}
-                        id="sidebar-menu"
-                        data-testid="sidebar-menu"
-                        style={{ transform: 'none' }} // Override default transform to let Framer Motion handle it
-                    >
-                        {/* Animated Header */}
-                        <motion.div
-                            variants={headerVariants}
-                            className={STYLES.sidebar.header}
-                        >
-                            <IconButton
-                                onClick={onClose}
-                                testId="sidebar-close-button"
-                                ariaLabel="Close sidebar"
-                                iconType="close"
-                            />
+                    <motion.div variants={overlayVariants} initial="closed" animate="open" exit="closed" className={STYLES.sidebar.overlay} onClick={onClose} data-testid="sidebar-overlay"/>
+                    <motion.div variants={sidebarVariants} initial="closed" animate="open" exit="closed" className={STYLES.sidebar.container} id="sidebar-menu" data-testid="sidebar-menu" style={{ transform: 'none' }} >
+                        <motion.div variants={headerVariants} className={STYLES.sidebar.header}>
+                            <IconButton onClick={onClose} testId="sidebar-close-button" ariaLabel="Close sidebar" iconType="close"/>
                         </motion.div>
-
-                        {/* Animated Navigation Container */}
-                        <motion.div
-                            variants={navContainerVariants}
-                            className={STYLES.sidebar.inner}
-                        >
+                        <motion.div variants={navContainerVariants} className={STYLES.sidebar.inner}>
                             {navItems.map(item => renderNavLink(item))}
                         </motion.div>
                     </motion.div>
