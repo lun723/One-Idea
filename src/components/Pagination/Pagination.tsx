@@ -1,38 +1,12 @@
 import React from 'react';
+import { Button } from '../Button';
+import type { PaginationProps } from "./Pagination.types";
 
-interface PaginationProps {
-  nextUrl: string | null;
-  previousUrl: string | null;
-  handleNextPage: () => void;
-  handlePreviousPage: () => void;
-}
-
-const Pagination: React.FC<PaginationProps> = ({
-  nextUrl,
-  previousUrl,
-  handleNextPage,
-  handlePreviousPage,
-}) => {
+const Pagination: React.FC<PaginationProps> = ({ nextUrl, previousUrl, handleNextPage, handlePreviousPage, }) => {
   return (
-    <div className="flex justify-center gap-4 mt-4">
-      <button
-        onClick={handlePreviousPage}
-        disabled={!previousUrl}
-        className={`px-4 py-2 rounded-lg text-white font-semibold transition-colors ${
-          previousUrl ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-300 cursor-not-allowed'
-        }`}
-      >
-        上一頁
-      </button>
-      <button
-        onClick={handleNextPage}
-        disabled={!nextUrl}
-        className={`px-4 py-2 rounded-lg text-white font-semibold transition-colors ${
-          nextUrl ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-300 cursor-not-allowed'
-        }`}
-      >
-        下一頁
-      </button>
+    <div className="flex justify-between gap-4 m-6">
+      <Button onClick={handlePreviousPage} disabled={!previousUrl} label="上一頁" />
+      <Button onClick={handleNextPage} disabled={!nextUrl} label="下一頁"/>
     </div>
   );
 };
