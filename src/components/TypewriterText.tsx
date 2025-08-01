@@ -12,17 +12,10 @@ export const TypewriterText: React.FC<{
   const { displayedText, isTyping } = useTypewriter({ text, delay, speed, isActive, onComplete });
 
   return (
-    <motion.span
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
+    <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
       {displayedText}
       {isTyping && (
-        <motion.span
-          animate={{ opacity: [0, 1, 0] }}
-          transition={{ repeat: Infinity, duration: 0.7 }}
-        >
+        <motion.span animate={{ opacity: [0, 1, 0] }} transition={{ repeat: Infinity, duration: 0.7 }}>
           |
         </motion.span>
       )}

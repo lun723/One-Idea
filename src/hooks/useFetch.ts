@@ -18,12 +18,12 @@ const useFetch = <T>(): {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
-  const { showLoading, hideLoading } = useLoading(); // 使用 LoadingContext
+  const { showLoading, hideLoading } = useLoading(); 
 
   const fetchData = async (url: string, options: FetchOptions = {}): Promise<T> => {
     try {
       setLoading(true);
-      showLoading(); // 顯示全局載入指示器
+      showLoading();
       setError(null);
 
       const config: AxiosRequestConfig = {
@@ -44,7 +44,7 @@ const useFetch = <T>(): {
       throw error;
     } finally {
       setLoading(false);
-      hideLoading(); // 隱藏全局載入指示器
+      hideLoading();
     }
   };
 

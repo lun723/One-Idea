@@ -1,6 +1,5 @@
 import type { Variants } from 'framer-motion';
 
-// Motion variants for sidebar animation
 export const sidebarVariants: Variants = {
     open: {
         x: 0,
@@ -25,7 +24,6 @@ export const sidebarVariants: Variants = {
     }
 };
 
-// Overlay variants for backdrop animation
 export const overlayVariants: Variants = {
     open: {
         opacity: 1,
@@ -43,7 +41,6 @@ export const overlayVariants: Variants = {
     }
 };
 
-// Nav items container variants
 export const navContainerVariants: Variants = {
     open: {
         transition: {
@@ -59,7 +56,6 @@ export const navContainerVariants: Variants = {
     }
 };
 
-// Individual nav item variants
 export const navItemVariants: Variants = {
     open: {
         y: 0,
@@ -81,7 +77,6 @@ export const navItemVariants: Variants = {
     }
 };
 
-// Sub-items container variants
 export const subItemsVariants: Variants = {
     open: {
         height: "auto",
@@ -119,7 +114,6 @@ export const subItemsVariants: Variants = {
     }
 };
 
-// Sub-item variants
 export const subItemVariants: Variants = {
     open: {
         x: 0,
@@ -141,7 +135,6 @@ export const subItemVariants: Variants = {
     }
 };
 
-// Header variants
 export const headerVariants: Variants = {
     open: {
         scale: 1,
@@ -164,7 +157,6 @@ export const headerVariants: Variants = {
     }
 };
 
-// Icon rotation animation settings
 export const iconRotationSettings = {
     transition: { 
         type: "spring" as const, 
@@ -173,7 +165,6 @@ export const iconRotationSettings = {
     }
 };
 
-// 動畫配置常數，方便調整
 export const ANIMATION_CONFIG = {
     spring: {
         stiffness: 300,

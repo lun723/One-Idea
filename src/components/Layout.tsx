@@ -10,10 +10,7 @@ const navItems: RouteConfig[] = routes.filter(route => route.isNavItem);
 const Layout: React.FC = () => {
   return (
     <div className="min-h-screen bg-blue-100 relative">
-      <Header 
-        logo={<img src={Logo} alt="Logo" className="h-10 w-auto" />}
-        navItems={navItems}
-      />
+      <Header logo={<img src={Logo} alt="Logo" className="h-10 w-auto" />} navItems={navItems}/>
       <main>
         <Outlet />
       </main>

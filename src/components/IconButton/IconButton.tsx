@@ -2,14 +2,7 @@ import React from 'react';
 import { STYLES } from './IconButton.styles';
 import type { IconButtonProps } from './IconButton.types';
 
-const IconButton: React.FC<IconButtonProps> = ({
-  onClick,
-  className = '',
-  testId = 'sidebar-button',
-  ariaLabel = 'Open menu',
-  iconType = 'menu',
-  customPath,
-}) => {
+const IconButton: React.FC<IconButtonProps> = ({ onClick, className = '', testId = 'sidebar-button', ariaLabel = 'Open menu', iconType = 'menu', customPath, }) => {
   const getIconPath = () => {
     if (customPath) return customPath;
     switch (iconType) {
@@ -22,26 +15,9 @@ const IconButton: React.FC<IconButtonProps> = ({
   };
 
   return (
-    <button
-      type="button"
-      className={`${STYLES.button} ${className}`}
-      aria-label={ariaLabel}
-      onClick={onClick}
-      data-testid={testId}
-    >
-      <svg
-        className="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        aria-hidden="true"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d={getIconPath()}
-        />
+    <button type="button" className={`${STYLES.button} ${className}`} aria-label={ariaLabel} onClick={onClick} data-testid={testId}>
+      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={getIconPath()}/>
       </svg>
     </button>
   );

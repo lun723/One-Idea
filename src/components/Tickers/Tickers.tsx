@@ -4,14 +4,7 @@ import { STYLES } from './Tickers.styles';
 import { motion } from "framer-motion";
 
 const Tickers: React.FC<TickersProps> = ({ text, index }) => (
-    <motion.span
-        key={text}
-        custom={index}
-        variants={tickersVariants}
-        initial="hidden"
-        animate="visible"
-        className={`${STYLES.tickers.base} ${STYLES.tickers.hover}`}
-    >
+    <motion.span key={text} custom={index} variants={tickersVariants} initial="hidden" animate="visible" className={`${STYLES.tickers.base} ${STYLES.tickers.hover}`}>
         {text}
     </motion.span>
 );

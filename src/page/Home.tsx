@@ -20,48 +20,17 @@ const Home: React.FC = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100 px-2 transition-all duration-1000 ease-out">
       <div className="w-full bg-gradient-to-br from-blue-100 to-purple-100">
         <div className="flex items-center justify-center text-center mx-auto px-3 md:px-8 py-16 gap-2 md:gap-12">
-          {/* Left Side: Profile Intro */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="w-full px-2 md:px-6 py-10"
-          >
+          <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, ease: "easeOut" }} className="w-full px-2 md:px-6 py-10">
             <h2 className="text-4xl font-bold m-6 text-gray-900">
-              <TypewriterText
-                text="Hello, I'm Juila"
-                speed={100}
-                isActive={true}
-                onComplete={() => handleTextComplete("first")}
-              />
+              <TypewriterText text="Hello, I'm Juila" speed={100} isActive={true} onComplete={() => handleTextComplete("first")}/>
             </h2>
             <h2 className="text-xl font-light m-4 text-gray-700">
-              <TypewriterText
-                text="A Front-end Engineer"
-                speed={200}
-                isActive={textCompletion.first}
-                onComplete={() => handleTextComplete("second")}
-              />
+              <TypewriterText text="A Front-end Engineer" speed={200} isActive={textCompletion.first} onComplete={() => handleTextComplete("second")}/>
             </h2>
             <h2 className="flex text-lg sm:text-xl gap-10 md:text-2xl font-light m-8 text-gray-700 items-center justify-center">
-              <TypewriterText
-                text="Want to know more about my experience and skills?"
-                speed={500}
-                isActive={textCompletion.second}
-                onComplete={() => handleTextComplete("third")}
-              />
-              <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: textCompletion.third ? 1 : 0 }}
-                            transition={{ duration: 0.5, ease: "easeOut" }}
-                            className="flex flex-wrap gap-8 m-4 justify-center"
-                          >
-              <Button
-                label={<>
-                  Go Here <i className="fas fa-arrow-right-long ml-2"></i>
-                </>}
-                onClick={() => navigate("/About")}
-              />
+              <TypewriterText text="Want to know more about my experience and skills?" speed={1000} isActive={textCompletion.second} onComplete={() => handleTextComplete("third")}/>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: textCompletion.third ? 1 : 0 }} transition={{ duration: 0.5, ease: "easeOut" }} className="flex flex-wrap gap-8 m-4 justify-center">
+              <Button onClick={() => navigate("/About")} label={<> Go Here <i className="fas fa-arrow-right-long ml-2"></i></>}/>
               </motion.div>
             </h2>
           </motion.div>
