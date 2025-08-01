@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import type { AxiosRequestConfig, Method } from 'axios';
-import { useLoading } from '../context/LoadingContext'; // 引入 LoadingContext
+import { useLoading } from '../context/LoadingContext'; 
 
 interface FetchOptions extends AxiosRequestConfig {
   method?: Method;

@@ -9,8 +9,6 @@ interface PaginationResponse<T> {
 
 interface PaginationState<T> {
   data: T[];
-  loading: boolean;
-  error: Error | null;
   nextUrl: string | null;
   previousUrl: string | null;
   handleNextPage: () => void;
@@ -21,27 +19,25 @@ const usePagination = <T, U>(
   initialUrl: string,
   transformData: (item: T) => Promise<U>
 ): PaginationState<U> => {
-  const { fetchData, loading, error } = useFetch<PaginationResponse<T>>();
+  const { fetchData } = useFetch<PaginationResponse<T>>();
   const [data, setData] = useState<U[]>([]);
   const [currentUrl, setCurrentUrl] = useState(initialUrl);
   const [nextUrl, setNextUrl] = useState<string | null>(null);
   const [previousUrl, setPreviousUrl] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!currentUrl) return;
+
     const fetchPaginatedData = async () => {
-      try {
-        const response = await fetchData(currentUrl);
-        setNextUrl(response.next);
-        setPreviousUrl(response.previous);
+      const response = await fetchData(currentUrl);
+      setNextUrl(response.next);
+      setPreviousUrl(response.previous);
 
-        const transformedData = await Promise.all(
-          response.results.map(async (item) => await transformData(item))
-        );
+      const transformedData = await Promise.all(
+        response.results.map(async (item) => await transformData(item))
+      );
 
-        setData(transformedData);
-      } catch (err) {
-        // Error is already handled by useApi
-      }
+      setData(transformedData);
     };
 
     fetchPaginatedData();
@@ -57,8 +53,6 @@ const usePagination = <T, U>(
 
   return {
     data,
-    loading,
-    error,
     nextUrl,
     previousUrl,
     handleNextPage,

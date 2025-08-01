@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
-import PokemonModal from '../views/modal/Pokemon-Modal';
 import Loading from '../components/Loading';
 
-// Modal registry mapping file names to components
-const modalRegistry: Record<string, React.ComponentType<any>> = {
-  PokemonModal,
-  // Add more modals here, e.g., AnotherModal: AnotherModal
-};
+const modules = import.meta.glob('../views/modal/*.tsx', { eager: true });
+const modalRegistry: Record<string, React.ComponentType<any>> = {};
+for (const path in modules) {
+  const modalName = path.replace(/^\.\.\/views\/modal\/(.*)\.tsx$/, '$1');
+  modalRegistry[modalName] = (modules[path] as any).default;
+}
 
 interface ModalState {
   modalType: string | null;
@@ -39,7 +39,6 @@ export const ModalProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       }
       setIsLoading(true);
       try {
-        // If modalProps is a function, assume it's an async data fetcher
         const props = typeof modalProps === 'function' ? await modalProps() : modalProps;
         setModalState({
           modalType,
@@ -71,21 +70,16 @@ export const ModalProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         modalProps: {},
         onCloseCallback: undefined,
       });
-    }, 300); // Delay to allow modal exit animation
+    }, 300);
   }, [modalState.onCloseCallback]);
 
   const ModalComponent = modalState.modalType ? modalRegistry[modalState.modalType] : null;
 
   return (
     <ModalContext.Provider value={{ openModal, closeModal }}>
-      {children}
-      {isLoading && <Loading />}
+      {children} {isLoading && <Loading />}
       {ModalComponent && (
-        <ModalComponent
-          isOpen={modalState.isOpen}
-          onClose={closeModal}
-          {...modalState.modalProps}
-        />
+        <ModalComponent isOpen={modalState.isOpen} onClose={closeModal} {...modalState.modalProps} />
       )}
     </ModalContext.Provider>
   );
