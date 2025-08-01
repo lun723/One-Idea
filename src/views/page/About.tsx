@@ -1,9 +1,10 @@
 import React, { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { TypewriterText } from "../components/TypewriterText";
-import { Card } from "../components/Card";
-import Tickers from "../components/Tickers";
-import { Button } from "../components/Button";
+import Tickers from "../../components/Tickers";
+import Card from "../../components/Card";
+import { Button } from "../../components/Button";
+import { TypewriterText } from "../../components/TypewriterText";
+import globalStyles from "../style/globalStyles";
 
 const About: React.FC = () => {
   const [textCompletion, setTextCompletion] = useState({
@@ -12,7 +13,7 @@ const About: React.FC = () => {
     third: false,
   });
   const skills = [ "React.js", "Vite", "MUI", "Bootstrap", "Ant Design", "RWD響應式網頁設計", "SCSS/SASS", "Git", "Github", "GitLab", "API 串接", "AWS", "Node.js", "Canva" ];
-  const [cardVisibility, setCardVisibility] = useState({ experience: false, skills: false, });
+  const [cardVisibility, setCardVisibility] = useState({ experience: false, skills: false });
   const [isRightSideVisible, setIsRightSideVisible] = useState(false);
 
   const toggleCard = useCallback((cardKey: keyof typeof cardVisibility) => {
@@ -31,14 +32,14 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100 px-2 transition-all duration-1000 ease-out">
-      <div className="w-full mt-6">
-        <div className="flex flex-col md:flex-row items-center justify-center text-center max-w-5xl mx-auto px-3 md:px-8 py-16 gap-2 md:gap-12">
+    <div className={globalStyles.pageContainer}>
+      <div className={`${globalStyles.contentWrapper} mt-6`}>
+        <div className={`${globalStyles.contentWrapper} flex flex-col md:flex-row items-center justify-center`}>
           <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, ease: "easeOut" }} className="w-full md:w-3/7 px-2 md:px-6 py-10">
             <h2 className="text-2xl font-light m-8 text-gray-700">
               <TypewriterText text="點選觀看我的" speed={100} isActive={true} onComplete={() => handleTextComplete("first")}/>
             </h2>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: textCompletion.first ? 1 : 0 }} transition={{ duration: 0.5, ease: "easeOut" }} className="grid sm:flex gap-8 m-4 justify-center">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: textCompletion.first ? 1 : 0 }} transition={{ duration: 0.5, ease: "easeOut" }} className={globalStyles.buttonContainer}>
               <Button label={"經歷"} onClick={() => toggleCard("experience")}/>
               <Button label={"技能"} onClick={() => toggleCard("skills")} />
             </motion.div>

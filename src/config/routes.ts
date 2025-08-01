@@ -1,7 +1,6 @@
-import Home from '../page/Home';
-import About from '../page/About';
-import pokeapi from '../page/practise/pokeapi';
-
+import About from '../views/page/About';
+import Home from '../views/page/Home';
+import Pokemon from '../views/page/practise/pokeapi';
 export interface RouteConfig {
     label: string;
     path: string;
@@ -17,10 +16,10 @@ export const routes: RouteConfig[] = [
     {
         label: '練習',
         path: '/practise',
-        component: pokeapi,
+        component: Pokemon,
         isNavItem: true,
         subItems: [
-            { label: 'Pokemon', path: '/practise/pokeapi', component: pokeapi, isNavItem: true, id: 'pokeapi' },
+            { label: 'Pokemon', path: '/practise/pokeapi', component: Pokemon, isNavItem: true, id: 'pokeapi' },
         ]
     }
 ];

@@ -1,10 +1,11 @@
 import React from 'react';
-import usePagination from '../../hooks/usePagination';
-import useFetch from '../../hooks/useFetch';
-import Card from '../../components/Card';
-import { useModal } from '../../context/modalContext';
-import Pagination from '../../components/Pagination/Pagination';
-import { Button } from '../../components/Button';
+import usePagination from '../../../hooks/usePagination';
+import useFetch from '../../../hooks/useFetch';
+import { useModal } from '../../../context/modalContext';
+import { Button } from '../../../components/Button';
+import Card from '../../../components/Card';
+import Pagination from '../../../components/Pagination';
+import globalStyles from '../../style/globalStyles';
 
 interface PokemonListItem {
   name: string;
@@ -24,7 +25,7 @@ interface Pokemon {
   }[];
 }
 
-const App: React.FC = () => {
+const Pokemon: React.FC = () => {
   const { fetchData } = useFetch<Pokemon>();
   const transformPokemonData = async (item: PokemonListItem): Promise<Pokemon> => {
     return await fetchData(item.url);
@@ -42,9 +43,9 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ease-out">
+    <div className={globalStyles.pageContainer}>
       <div className="w-full max-w-7xl">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center text-center mx-auto px-8 py-8 gap-6 md:gap-12 mt-24">
+        <div className={globalStyles.gridLayout}>
           {pokemons.map((pokemon) => (
             <Card key={pokemon.id} title={pokemon.name}>
               <div className="flex flex-col gap-1">
@@ -54,15 +55,10 @@ const App: React.FC = () => {
             </Card>
           ))}
         </div>
-        <Pagination
-          nextUrl={nextUrl}
-          previousUrl={previousUrl}
-          handleNextPage={handleNextPage}
-          handlePreviousPage={handlePreviousPage}
-        />
+        <Pagination nextUrl={nextUrl} previousUrl={previousUrl} handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage}/>
       </div>
     </div>
   );
 };
 
-export default App;
+export default Pokemon;

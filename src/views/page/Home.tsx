@@ -1,8 +1,9 @@
 import React, { useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { TypewriterText } from "../components/TypewriterText";
-import { Button } from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import { TypewriterText } from "../../components/TypewriterText";
+import { Button } from "../../components/Button";
+import globalStyles from "../style/globalStyles";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -17,9 +18,9 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100 px-2 transition-all duration-1000 ease-out">
-      <div className="w-full bg-gradient-to-br from-blue-100 to-purple-100">
-        <div className="flex items-center justify-center text-center mx-auto px-3 md:px-8 py-16 gap-2 md:gap-12">
+    <div className={globalStyles.pageContainer}>
+      <div className={globalStyles.contentWrapper}>
+        <div className={`${globalStyles.contentWrapper} flex items-center justify-center`}>
           <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, ease: "easeOut" }} className="w-full px-2 md:px-6 py-10">
             <h2 className="text-4xl font-bold m-6 text-gray-900">
               <TypewriterText text="Hello, I'm Juila" speed={100} isActive={true} onComplete={() => handleTextComplete("first")}/>
@@ -29,13 +30,11 @@ const Home: React.FC = () => {
             </h2>
             <h2 className="grid md:flex text-lg sm:text-xl gap-2 md:text-2xl font-light m-8 text-gray-700 items-center justify-center">
               <TypewriterText text="你想知道更多有關我的經歷和技能嗎？" speed={1000} isActive={textCompletion.second} onComplete={() => handleTextComplete("third")}/>
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: textCompletion.third ? 1 : 0 }} transition={{ duration: 0.5, ease: "easeOut" }} className="flex flex-wrap gap-8 m-4 justify-center">
-              <Button onClick={() => navigate("/About")} label={<>去看看<i className="fas fa-arrow-right-long ml-2"></i></>}/>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: textCompletion.third ? 1 : 0 }} transition={{ duration: 0.5, ease: "easeOut" }} className={globalStyles.buttonContainer}>
+                <Button onClick={() => navigate("/About")} label={<>去看看<i className="fas fa-arrow-right-long ml-2"></i></>}/>
               </motion.div>
             </h2>
           </motion.div>
-
-  
         </div>
       </div>
     </div>
