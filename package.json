@@ -6,7 +6,7 @@
   "homepage": "https://lun723.github.io/One-Idea",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
