@@ -1,21 +1,33 @@
 import { motion } from 'framer-motion';
-import { loadingAnimation, containerAnimation, spinnerAnimation } from './Loading.animations';
+import { loadingAnimation, containerAnimation, dotAnimation } from './Loading.animations';
 import { STYLES } from './Loading.styles';
 
 const Loading = () => {
     return (
         <motion.div 
             className={STYLES.wrapper}
-            {...loadingAnimation}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={loadingAnimation}
         >
             <motion.div
                 className={STYLES.container}
-                {...containerAnimation}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                variants={containerAnimation}
             >
-                <motion.div 
-                    className={STYLES.spinner}
-                    {...spinnerAnimation}
-                />
+                {[0, 1, 2].map((index) => (
+                    <motion.div
+                        key={index}
+                        className={STYLES.dot}
+                        initial="initial"
+                        animate="animate"
+                        variants={dotAnimation}
+                        custom={index}
+                    />
+                ))}
             </motion.div>
         </motion.div>
     );
