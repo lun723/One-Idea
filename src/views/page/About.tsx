@@ -37,7 +37,7 @@ const About: React.FC = () => {
         <div className={`flex flex-col md:flex-row items-center justify-center text-center max-w-5xl mx-auto px-3 md:px-8 py-16 gap-2 md:gap-12`}>
           <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, ease: "easeOut" }} className="w-full md:w-3/7 px-2 md:px-6 py-10">
             <h2 className="text-2xl font-light m-8 text-gray-700">
-              <TypewriterText text="點選觀看我的" speed={100} isActive={true} onComplete={() => handleTextComplete("first")}/>
+              <TypewriterText text="點選觀看我的" speed={200} isActive={true} onComplete={() => handleTextComplete("first")}/>
             </h2>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: textCompletion.first ? 1 : 0 }} transition={{ duration: 0.5, ease: "easeOut" }} className="grid sm:flex gap-8 m-4 justify-center">
               <Button label={"經歷"} onClick={() => toggleCard("experience")}/>

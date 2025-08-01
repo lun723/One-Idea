@@ -37,7 +37,7 @@ export const useTypewriter = ({
     }, delay);
 
     return () => clearTimeout(timeout);
-  }, [isActive, text, delay, speed, onComplete]);
+  }, [isActive, text, delay, speed]);
 
   return { displayedText, isTyping: isActive && index < text.length };
 };
