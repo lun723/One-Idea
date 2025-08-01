@@ -48,14 +48,8 @@ const App: React.FC = () => {
           {pokemons.map((pokemon) => (
             <Card key={pokemon.id} title={pokemon.name}>
               <div className="flex flex-col gap-1">
-                <img
-                  src={pokemon.sprites.front_default}
-                  alt={pokemon.name}
-                />
-                <Button
-                  label="More details"
-                  onClick={() => handleOpenPokemonModal(pokemon)}
-                />
+                <img src={pokemon.sprites.front_default} alt={pokemon.name}/>
+                <Button label="更多詳細" onClick={() => handleOpenPokemonModal(pokemon)} />
               </div>
             </Card>
           ))}

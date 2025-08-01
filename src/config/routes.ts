@@ -12,15 +12,15 @@ export interface RouteConfig {
 }
 
 export const routes: RouteConfig[] = [
-    { label: 'Home', path: '/', component: Home, isNavItem: true, id: 'home' },
-    { label: 'About', path: '/about', component: About, isNavItem: true, id: 'about' },
+    { label: '首頁', path: '/', component: Home, isNavItem: true, id: 'home' },
+    { label: '關於', path: '/about', component: About, isNavItem: true, id: 'about' },
     {
-        label: 'Practise',
+        label: '練習',
         path: '/practise',
         component: pokeapi,
         isNavItem: true,
         subItems: [
-            { label: 'pokeapi', path: '/practise/pokeapi', component: pokeapi, isNavItem: true, id: 'pokeapi' },
+            { label: 'Pokemon', path: '/practise/pokeapi', component: pokeapi, isNavItem: true, id: 'pokeapi' },
         ]
     }
 ];

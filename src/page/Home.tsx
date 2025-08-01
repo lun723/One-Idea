@@ -27,10 +27,10 @@ const Home: React.FC = () => {
             <h2 className="text-xl font-light m-4 text-gray-700">
               <TypewriterText text="A Front-end Engineer" speed={200} isActive={textCompletion.first} onComplete={() => handleTextComplete("second")}/>
             </h2>
-            <h2 className="flex text-lg sm:text-xl gap-10 md:text-2xl font-light m-8 text-gray-700 items-center justify-center">
-              <TypewriterText text="Want to know more about my experience and skills?" speed={1000} isActive={textCompletion.second} onComplete={() => handleTextComplete("third")}/>
+            <h2 className="grid md:flex text-lg sm:text-xl gap-2 md:text-2xl font-light m-8 text-gray-700 items-center justify-center">
+              <TypewriterText text="你想知道更多有關我的經歷和技能嗎？" speed={1000} isActive={textCompletion.second} onComplete={() => handleTextComplete("third")}/>
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: textCompletion.third ? 1 : 0 }} transition={{ duration: 0.5, ease: "easeOut" }} className="flex flex-wrap gap-8 m-4 justify-center">
-              <Button onClick={() => navigate("/About")} label={<> Go Here <i className="fas fa-arrow-right-long ml-2"></i></>}/>
+              <Button onClick={() => navigate("/About")} label={<>去看看<i className="fas fa-arrow-right-long ml-2"></i></>}/>
               </motion.div>
             </h2>
           </motion.div>
