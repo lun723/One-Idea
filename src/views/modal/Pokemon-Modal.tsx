@@ -26,9 +26,6 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ isOpen, onClose, pokemon })
       <div className="flex flex-col items-center">
         <img src={pokemon.sprites.front_default} alt={pokemon.name} className="w-32 h-32" />
         <p>Types: {pokemon.types.map(t => t.type.name).join(', ')}</p>
-        <button onClick={onClose} className="mt-4 bg-red-500 text-white px-4 py-2 rounded">
-          Close
-        </button>
       </div>
     </Modal>
   );
