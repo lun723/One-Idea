@@ -22,7 +22,7 @@ interface PokemonModalProps {
 
 const PokemonModal: React.FC<PokemonModalProps> = ({ isOpen, onClose, pokemon }) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title={`Pokemon: ${pokemon.name}`} size="medium">
+    <Modal isOpen={isOpen} onClose={onClose} title={`Pokemon: ${pokemon.name}`} size="small">
       <div className="flex flex-col items-center">
         <img src={pokemon.sprites.front_default} alt={pokemon.name} className="w-32 h-32" />
         <p>Types: {pokemon.types.map(t => t.type.name).join(', ')}</p>
