@@ -19,6 +19,10 @@ const Header: React.FC<HeaderProps> = ({ logo, navItems, className = '', 'data-t
         setIsSidebarOpen(false);
     };
 
+    const handleClick = () => {
+        window.open('https://github.com/lun723/One-Idea', '_blank');
+    };
+
     const renderLogo = () => {
         if (isStringLogo(logo)) {
             return (
@@ -62,6 +66,7 @@ const Header: React.FC<HeaderProps> = ({ logo, navItems, className = '', 'data-t
                         <NavLink to="/One-Idea/" className="flex items-center" data-testid="logo-link">{renderLogo()}</NavLink>
                     </div>
                     <div className={STYLES.sidebar.buttonContainer}>
+                        <IconButton onClick={handleClick} testId="sidebar-button" ariaLabel="Open github" iconType="github" />
                         <IconButton onClick={toggleSidebar} testId="sidebar-button" ariaLabel="Open menu" iconType="menu" />
                     </div>
                 </div>

@@ -8,6 +8,6 @@ export const STYLES = {
         wrapper: 'flex items-center',
     },
     sidebar: {
-        buttonContainer: 'flex items-center',
+        buttonContainer: 'flex items-center gap-2',
     },
 };

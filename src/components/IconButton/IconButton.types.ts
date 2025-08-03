@@ -3,6 +3,6 @@ export interface IconButtonProps {
   className?: string;
   testId?: string;
   ariaLabel?: string;
-  iconType?: 'menu' | 'close';
+  iconType?: string
   customPath?: string;
 }
