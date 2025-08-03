@@ -59,7 +59,7 @@ const Header: React.FC<HeaderProps> = ({ logo, navItems, className = '', 'data-t
             <nav>
                 <div className={STYLES.container}>
                     <div className={STYLES.logo.container}>
-                        <NavLink to="/" className="flex items-center" data-testid="logo-link">{renderLogo()}</NavLink>
+                        <NavLink to="/One-Idea/" className="flex items-center" data-testid="logo-link">{renderLogo()}</NavLink>
                     </div>
                     <div className={STYLES.sidebar.buttonContainer}>
                         <IconButton onClick={toggleSidebar} testId="sidebar-button" ariaLabel="Open menu" iconType="menu" />
