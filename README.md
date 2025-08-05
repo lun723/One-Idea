@@ -1,4 +1,4 @@
-# React + TypeScript + Vite 個人網站
+# 把想法都匯集在一起的個人網站
 
 - 主要使用 React + Tailwindcss + TypeScript + Vite 撰寫
 - UI 畫面使用 HeadlessUI、HeroIcons，加速開發速度
