@@ -5,6 +5,8 @@ import Card from "../../components/Card";
 import { Button } from "../../components/Button";
 import { TypewriterText } from "../../components/TypewriterText";
 import globalStyles from "../style/globalStyles";
+import { useModal } from "../../context/modalContext";
+import { skills } from "../../config/skills";
 
 const About: React.FC = () => {
   const [textCompletion, setTextCompletion] = useState({
@@ -12,7 +14,6 @@ const About: React.FC = () => {
     second: false,
     third: false,
   });
-  const skills = [ "React.js", "Vite", "MUI", "Bootstrap", "Ant Design", "RWD響應式網頁設計", "SCSS/SASS", "Git", "Github", "GitLab", "API 串接", "AWS", "Node.js", "Canva" ];
   const [cardVisibility, setCardVisibility] = useState({ experience: false, skills: false });
   const [isRightSideVisible, setIsRightSideVisible] = useState(false);
 
@@ -30,6 +31,12 @@ const About: React.FC = () => {
   const handleTextComplete = useCallback((stage: keyof typeof textCompletion) => {
     setTextCompletion((prev) => ({ ...prev, [stage]: true }));
   }, []);
+
+  const { openModal } = useModal();
+  
+  const handleModal = (skill: string) => {
+    openModal('Skill-Modal', { skill } , () => {} );
+  };
 
   return (
     <div className={globalStyles.pageContainer}>
@@ -66,7 +73,7 @@ const About: React.FC = () => {
                     <Card title="技能">
                       <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
                         {skills.map((skill, idx) => (
-                          <Tickers key={skill} text={skill} index={idx} />
+                          <Tickers key={skill} text={skill} index={idx} onClick={() => handleModal(skill)}/>
                         ))}
                       </div>
                     </Card>
