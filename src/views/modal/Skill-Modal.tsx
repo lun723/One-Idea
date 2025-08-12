@@ -12,7 +12,7 @@ const SkillModal: React.FC<SkillModalProps> = ({ isOpen, onClose, skill }) => {
 
   const selectedSkill = skillsConfig[skill] || {
     icon: '❓',
-    displayText: 'Unknown Skill',
+    text: 'Unknown Skill',
   };
 
   return (
@@ -26,7 +26,7 @@ const SkillModal: React.FC<SkillModalProps> = ({ isOpen, onClose, skill }) => {
         </div>} 
       >
       <div className="flex flex-col items-center">
-        <p>{selectedSkill.displayText}</p>
+        <p>{selectedSkill.text}</p>
       </div>
     </Modal>
   );
