@@ -60,7 +60,7 @@ const About: React.FC = () => {
                       <div className="font-bold mb-4 px-3 py-2 text-start">
                         <div className="font-bold mb-2 text-lg py-2">越世實業股份有限公司</div>
                         <ul className="list-disc list-outside ml-8 text-gray-600 text-sm space-y-2">
-                          <li>參與1項開發專案、4項維運及開發專案，具中大型專案經驗</li>
+                          <li>參與2項開發專案、4項維運及優化專案，具中大型專案經驗</li>
                           <li>與SA、SD討論UI/UX、API規格，開發專案畫面</li>
                           <li>使用React.js元件模組化、自訂功能函式、路由管理</li>
                           <li>導入Vite、MUI、Bootstrap，實現快速開發與一致性設計</li>
