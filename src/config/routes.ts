@@ -2,6 +2,7 @@ import About from '../views/page/About';
 import Error from '../views/page/Error';
 import Home from '../views/page/Home';
 import Pokemon from '../views/page/practise/pokeapi';
+// import Travel from '../views/page/travel/travel';
 export interface RouteConfig {
     label: string;
     path: string;
@@ -12,8 +13,9 @@ export interface RouteConfig {
 }
 
 export const routes: RouteConfig[] = [
-    { label: '首頁', path: '/One-Idea/', component: Home, isNavItem: true, id: 'home' },
+    { label: '首頁', path: '/', component: Home, isNavItem: true, id: 'home' },
     { label: '關於', path: '/about', component: About, isNavItem: true, id: 'about' },
+    // { label: '旅行', path: '/travel', component: Travel, isNavItem: true, id: 'travel' },
     {
         label: '練習',
         path: '/practise',
